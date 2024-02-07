@@ -22,7 +22,7 @@ class _MathState extends State<Math> {
 
   void switchScreen() {
     setState(() {
-      activeScreen = const GradesChoosing();
+      activeScreen = GradesChoosing();
     });
   }
 
