@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 class GradesChoosing extends StatelessWidget {
+  const GradesChoosing({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SizedBox(
+      width: double.infinity,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
             'Выберите класс',
