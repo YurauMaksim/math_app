@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:math_app/views/choose_button.dart';
+import 'package:math_app/data/grades.dart';
 
-class GradesChoosing extends StatelessWidget {
-  const GradesChoosing({super.key});
+class GradesChoosingScreen extends StatelessWidget {
+  const GradesChoosingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const gradeName = grades;
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -15,16 +19,13 @@ class GradesChoosing extends StatelessWidget {
             style: TextStyle(fontSize: 35, color: Colors.white),
           ),
           const SizedBox(
-            height: 39,
+            height: 30,
           ),
-          OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  textStyle: const TextStyle(fontSize: 24)),
-              child: const Text('7 класс')),
+          ...gradeName.map((grade) {
+            return ChooseButton(name: grade, onTap: () {});
+          }),
           const SizedBox(
-            height: 400,
+            height: 50,
           ),
           OutlinedButton.icon(
               onPressed: () {},

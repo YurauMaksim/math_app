@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:math_app/screens/grades_choosing.dart';
+import 'package:math_app/screens/grades_choosing_screen.dart';
 import 'package:math_app/screens/start_screen.dart';
 
 class Math extends StatefulWidget {
@@ -25,7 +25,7 @@ class _MathState extends State<Math> {
     Widget screenWidget = StartScreen(switchScreen);
 
     if (activeScreen == 'grades-choosing') {
-      screenWidget = const GradesChoosing();
+      screenWidget = const GradesChoosingScreen();
     }
 
     return MaterialApp(
