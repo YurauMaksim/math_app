@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:math_app/data/subjects_data.dart';
+import 'package:math_app/screens/grades_choosing_screen.dart';
+import 'package:math_app/views/choose_button_icon.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen(this.gradesChoosing, {super.key});
-  final void Function() gradesChoosing;
+  const StartScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
+    const subjectName = subjects;
+
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -23,13 +28,9 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          OutlinedButton.icon(
-              onPressed: gradesChoosing,
-              style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  textStyle: const TextStyle(fontSize: 24)),
-              icon: const Icon(Icons.arrow_right_alt_sharp),
-              label: const Text('Математика')),
+          ...subjectName.map((subject) {
+            return ChooseButtonIcon(name: subject, onTap: () {});
+          }),
         ],
       ),
     );
