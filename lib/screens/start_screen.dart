@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:math_app/data/subjects_data.dart';
+import 'package:math_app/models/grade.dart';
+import 'package:math_app/data/grades_data.dart';
 import 'package:math_app/screens/grades_choosing_screen.dart';
 import 'package:math_app/views/choose_button_icon.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({super.key});
+  const StartScreen({super.key, required this.grades});
+
+  final List<Grade> grades;
 
   @override
   Widget build(BuildContext context) {
-    const subjectName = subjects;
-
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -28,8 +30,16 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          ...subjectName.map((subject) {
-            return ChooseButtonIcon(name: subject, onTap: () {});
+          ...grades.map((grade) {
+            return ChooseButtonIcon(
+                name: grade.subjectName,
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              GradesChoosingScreen(grade: grade)));
+                });
           }),
         ],
       ),

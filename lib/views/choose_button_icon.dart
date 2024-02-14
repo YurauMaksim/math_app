@@ -13,7 +13,7 @@ class ChooseButtonIcon extends StatelessWidget {
         style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
             textStyle: const TextStyle(fontSize: 20, color: Colors.white)),
-        icon: const Icon(Icons.arrow_right_alt_outlined),
+        icon: const Icon(Icons.arrow_right_outlined),
         label: Text(name));
   }
 }
