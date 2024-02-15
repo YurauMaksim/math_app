@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:math_app/data/math_chapters.dart';
-import 'package:math_app/models/grade.dart';
-import 'package:math_app/models/math_chapter.dart';
+import 'package:math_app/data/math/math_chapters.dart';
+import 'package:math_app/screens/topic_choosing_screen.dart';
 import 'package:math_app/views/back_button_icon.dart';
 import 'package:math_app/views/choose_button.dart';
 import 'package:math_app/views/scaffold_app.dart';
@@ -31,7 +30,15 @@ class ChapterChoosingScreen extends StatelessWidget {
               height: 30,
             ),
             ...chapter.map((chapter) {
-              return ChooseButton(name: chapter, onTap: () {});
+              return ChooseButton(
+                  name: chapter,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                TopicChoosingScreen(chapter: chapter)));
+                  });
             }),
             const SizedBox(
               height: 50,
