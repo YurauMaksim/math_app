@@ -36,8 +36,8 @@ class ChapterChoosingScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                TopicChoosingScreen(chapter: chapter)));
+                            builder: (context) => TopicChoosingScreen(
+                                chapter: chapter, grade: grade)));
                   });
             }),
             const SizedBox(
