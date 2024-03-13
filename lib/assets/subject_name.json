@@ -1,0 +1,12 @@
+{
+  "subjectList" : {
+    "math" : {
+      "id" : "0",
+      "subject" : "Математика"
+    },
+    "russian" : {
+      "id" : "1",
+      "subject" : "Русский язык"
+    }
+  }
+}

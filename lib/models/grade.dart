@@ -1,5 +1,6 @@
 class Grade {
-  final String subjectName;
-  final List<String> grades;
-  Grade({required this.subjectName, required this.grades});
+  final String id;
+  final String title;
+
+  const Grade({required this.id, required this.title});
 }

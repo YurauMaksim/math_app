@@ -1,8 +1,8 @@
 import 'package:math_app/models/topic.dart';
 
 class ActivityType {
-  final List<String> activityTypes;
-  final Topic topic;
+  final String id;
+  final String title;
 
-  ActivityType({required this.activityTypes, required this.topic});
+  const ActivityType({required this.id, required this.title});
 }

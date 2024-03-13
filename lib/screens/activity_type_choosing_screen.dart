@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:math_app/data/math/math_activity_type.dart';
 import 'package:math_app/views/back_button_icon.dart';
-import 'package:math_app/views/choose_button.dart';
+import 'package:math_app/widgets/choose_button.dart';
 import 'package:math_app/views/scaffold_app.dart';
 
 class ActivityTypeChoosingScreen extends StatelessWidget {
