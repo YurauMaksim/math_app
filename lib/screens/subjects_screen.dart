@@ -34,36 +34,53 @@ class SubjectScreen extends StatelessWidget {
     );
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(subject.title),
-        ),
-        body: Column(
-          children: [
-            Row(
-              children: [
-                for (final chapter in subject.chapters) Text(chapter.title)
-              ],
-            ),
-            for (final chapter in subject.chapters)
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Text(chapter.title),
-                      for (final grade in chapter.grades)
-                        Row(
-                          children: [
-                            Text(grade.title),
-                            for (final activity in chapter.activityType)
-                              Text(activity.title)
-                          ],
-                        )
-                    ],
-                  )
-                ],
-              )
-          ],
-        ));
+      appBar: AppBar(
+        title: Text(subject.title),
+      ),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              for (final chapter in subject.chapters)
+                Column(
+                  children: [
+                    Text(chapter.title),
+                    Column(
+                      children: [
+                        for (final grade in chapter.grades)
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            child: ExpansionTile(
+                              title: Text(grade.title),
+                              children: [
+                                for (final topic in grade.topics)
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    child: ExpansionTile(
+                                      title: Text(topic.topicName),
+                                      children: [
+                                        for (final activity
+                                            in topic.activityTypes)
+                                          OutlinedButton(
+                                              child: Text(activity.title),
+                                              onPressed: () => {}),
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    )
+                  ],
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 

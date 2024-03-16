@@ -1,8 +1,9 @@
+import 'package:math_app/models/activity_type.dart';
 import 'package:math_app/models/chapter.dart';
 
 class Topic {
-  final List<String> topicNames;
-  final Chapter chapter;
+  final String topicName;
+  final List<ActivityType> activityTypes;
 
-  Topic({required this.topicNames, required this.chapter});
+  const Topic({required this.topicName, required this.activityTypes});
 }
