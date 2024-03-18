@@ -16,6 +16,7 @@ const subjects = [
             title: '7 класс',
             topics: [
               Topic(
+                id: 'topic1',
                 topicName: 'Тема 1',
                 activityTypes: [
                   ActivityType(
@@ -26,6 +27,7 @@ const subjects = [
                 ],
               ),
               Topic(
+                id: 'topic2',
                 topicName: 'Тема 2',
                 activityTypes: [
                   ActivityType(
@@ -42,6 +44,7 @@ const subjects = [
             title: '8 класс',
             topics: [
               Topic(
+                id: 'topic1',
                 topicName: 'Тема 1',
                 activityTypes: [
                   ActivityType(
@@ -52,6 +55,7 @@ const subjects = [
                 ],
               ),
               Topic(
+                id: 'topic2',
                 topicName: 'Тема 2',
                 activityTypes: [
                   ActivityType(
@@ -70,6 +74,7 @@ const subjects = [
             title: '7 класс',
             topics: [
               Topic(
+                id: 'topic1344',
                 topicName: 'Тема 1344',
                 activityTypes: [
                   ActivityType(
@@ -80,6 +85,7 @@ const subjects = [
                 ],
               ),
               Topic(
+                id: 'topic2234',
                 topicName: 'Тема 2234',
                 activityTypes: [
                   ActivityType(
@@ -96,6 +102,7 @@ const subjects = [
             title: '8 класс',
             topics: [
               Topic(
+                id: 'topic1',
                 topicName: 'Тема 1',
                 activityTypes: [
                   ActivityType(
@@ -106,6 +113,7 @@ const subjects = [
                 ],
               ),
               Topic(
+                id: 'topic2',
                 topicName: 'Тема 2',
                 activityTypes: [
                   ActivityType(
