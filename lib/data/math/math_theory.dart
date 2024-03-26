@@ -1,6 +1,12 @@
 import 'package:math_app/models/theory.dart';
 
-const theories = [
+var map = {
+  'SomeText': "SomeImage",
+  'SomeOtherText': "SomeImage",
+  'SomeSecondOtherText': "No Image"
+};
+
+var theories = [
   Theory(
       id: 'Theory1',
       subjectId: 'math',
@@ -8,15 +14,7 @@ const theories = [
       gradeId: '7grade',
       topicId: 'topic1',
       title: "Числовые и алгебраические выражения",
-      paragraphs: [
-        "Числовое выражение состоит из чисел и знаков арифметических действий между ними, также может содержать скобки для указания порядка действий. Числовое выражение должно иметь смысл.",
-        "Алгебраическое выражение состоит из букв и чисел, между которыми стоят знаки арифметических действий, также может содержать скобки. Алгебраическое выражение должно иметь смысл.",
-        "some paragraphs"
-      ],
-      imagesUrl: [
-        'some imagesurls',
-        'more images urls'
-      ]),
+      theoryData: [map]),
   Theory(
       id: 'Theory2',
       subjectId: 'math',
@@ -24,13 +22,5 @@ const theories = [
       gradeId: '7grade',
       topicId: 'topic1',
       title: "Числовые выражения",
-      paragraphs: [
-        "Числовое выражение состоит из чисел и знаков арифметических действий между ними, также может содержать скобки для указания порядка действий. Числовое выражение должно иметь смысл.",
-        "Алгебраическое выражение состоит из букв и чисел, между которыми стоят знаки арифметических действий, также может содержать скобки. Алгебраическое выражение должно иметь смысл.",
-        "some paragraphs"
-      ],
-      imagesUrl: [
-        'some imagesurls',
-        'more images urls'
-      ]),
+      theoryData: [map]),
 ];

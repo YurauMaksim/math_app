@@ -14,7 +14,11 @@ class TheoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(theory.title),
       ),
-      body: ,
+      body: Column(
+        children: [
+          Text(theory.title),
+        ],
+      ),
     );
   }
 }

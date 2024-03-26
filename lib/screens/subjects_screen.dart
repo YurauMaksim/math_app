@@ -5,6 +5,8 @@ import 'package:math_app/data/subjects_data.dart';
 import 'package:math_app/models/chapter.dart';
 import 'package:math_app/models/subject.dart';
 import 'package:math_app/models/subject_item.dart';
+import 'package:math_app/models/theory.dart';
+import 'package:math_app/screens/theory_screen.dart';
 
 class SubjectScreen extends StatelessWidget {
   final Subject subject;
@@ -33,6 +35,11 @@ class SubjectScreen extends StatelessWidget {
         ],
       ),
     );
+
+    void _selectTheory(BuildContext context, Theory theory) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (ctx) => TheoryScreen(theory: theory)));
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -65,9 +72,25 @@ class SubjectScreen extends StatelessWidget {
                                         children: [
                                           for (final activity
                                               in topic.activityTypes)
-                                            OutlinedButton(
-                                                child: Text(activity.title),
-                                                onPressed: () => {}),
+                                            for (final theory in theories)
+                                              if (theory.subjectId ==
+                                                      subject.id &&
+                                                  theory.gradeId == grade.id &&
+                                                  theory.chapterId ==
+                                                      chapter.id &&
+                                                  theory.topicId == topic.id)
+                                                OutlinedButton(
+                                                    child: Text(activity.title),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (ctx) =>
+                                                                  TheoryScreen(
+                                                                      theory:
+                                                                          theory)));
+                                                    }),
+                                          // TODO Make a passing to a new screen
                                         ],
                                       ),
                                     ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:math_app/models/grade.dart';
-import 'package:math_app/screens/chapter_choosing_screen.dart';
 import 'package:math_app/views/back_button_icon.dart';
 import 'package:math_app/widgets/choose_button.dart';
 import 'package:math_app/views/scaffold_app.dart';
