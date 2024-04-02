@@ -6,6 +6,7 @@ class Theory {
   final String chapterId;
   final String gradeId;
   final String topicId;
+  final String activityTypeId;
   final String title;
   List<Map<String, dynamic>> theoryData;
 
@@ -15,6 +16,7 @@ class Theory {
     required this.chapterId,
     required this.gradeId,
     required this.topicId,
+    required this.activityTypeId,
     required this.title,
     required this.theoryData,
   });

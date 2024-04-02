@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:math_app/data/grades_data.dart';
+import 'package:math_app/data/math/math_practice.dart';
 import 'package:math_app/data/math/math_theory.dart';
 import 'package:math_app/data/subjects_data.dart';
 import 'package:math_app/models/chapter.dart';
 import 'package:math_app/models/subject.dart';
 import 'package:math_app/models/subject_item.dart';
 import 'package:math_app/models/theory.dart';
+import 'package:math_app/screens/practice_screen.dart';
 import 'package:math_app/screens/theory_screen.dart';
 
 class SubjectScreen extends StatelessWidget {
@@ -78,7 +80,9 @@ class SubjectScreen extends StatelessWidget {
                                                   theory.gradeId == grade.id &&
                                                   theory.chapterId ==
                                                       chapter.id &&
-                                                  theory.topicId == topic.id)
+                                                  theory.topicId == topic.id &&
+                                                  activity.id ==
+                                                      theory.activityTypeId)
                                                 OutlinedButton(
                                                     child: Text(activity.title),
                                                     onPressed: () {
@@ -90,6 +94,30 @@ class SubjectScreen extends StatelessWidget {
                                                                       theory:
                                                                           theory)));
                                                     }),
+                                          for (final activity
+                                              in topic.activityTypes)
+                                            for (final practice in practices)
+                                              if (practice.subjectId ==
+                                                      subject.id &&
+                                                  practice.gradeId ==
+                                                      grade.id &&
+                                                  practice.chapterId ==
+                                                      chapter.id &&
+                                                  practice.topicId ==
+                                                      topic.id &&
+                                                  activity.id ==
+                                                      practice.activityTypeId)
+                                                OutlinedButton(
+                                                    child: Text(activity.title),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (ctx) =>
+                                                                  PracticeScreen(
+                                                                      practice:
+                                                                          practice)));
+                                                    })
                                           // TODO Make a passing to a new screen
                                         ],
                                       ),

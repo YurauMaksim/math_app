@@ -1,26 +1,26 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:math_app/models/practice.dart';
 
 import 'package:math_app/models/subject.dart';
 import 'package:math_app/models/theory.dart';
 
-class TheoryScreen extends StatelessWidget {
-  final Theory theory;
+class PracticeScreen extends StatelessWidget {
+  final Practice practice;
 
-  const TheoryScreen({super.key, required this.theory});
+  const PracticeScreen({super.key, required this.practice});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(theory.title),
+        title: Text(practice.title),
       ),
       body: Column(
         children: [
-          Text(theory.title),
-          for (var block in theory.theoryData)
-            for (var text in block.entries) Text("${text.key} \n ${text.value}")
+          Text(practice.title),
+          Text(practice.practiceData.printRightAnswer()),
         ],
       ),
     );
