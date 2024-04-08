@@ -1,8 +1,9 @@
 import 'package:math_app/models/theory.dart';
 
 var map = {
-  'SomeText': "SomeImage",
-  'SomeOtherText': "SomeImage",
+  'SomeText': "packages/images/math/theory/7_grade/algebra/1_topic/first.png",
+  'SomeOtherText':
+      "packages/images/math/theory/7_grade/algebra/1_topic/second.png",
   'SomeSecondOtherText': "No Image"
 };
 

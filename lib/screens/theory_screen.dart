@@ -20,7 +20,21 @@ class TheoryScreen extends StatelessWidget {
         children: [
           Text(theory.title),
           for (var block in theory.theoryData)
-            for (var text in block.entries) Text("${text.key} \n ${text.value}")
+            for (var text in block.entries)
+              Column(
+                children: [
+                  Text("${text.key}"),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  if (text.value != "No Image")
+                    Image.asset(text.value)
+                  else
+                    SizedBox(
+                      height: 5,
+                    ),
+                ],
+              )
         ],
       ),
     );
