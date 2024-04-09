@@ -1,10 +1,20 @@
 import 'package:math_app/models/theory.dart';
 
 var map = {
-  'SomeText': "packages/images/math/theory/7_grade/algebra/1_topic/first.png",
-  'SomeOtherText':
-      "packages/images/math/theory/7_grade/algebra/1_topic/second.png",
-  'SomeSecondOtherText': "No Image"
+  'lorem ipsum New Focus Styles & Updated Styling for Button Groups\nUpcoming initiatives on Stack Overflow and across the Stack Exchange network Staging Ground is coming back and moving out of beta Temporary policy: Generative AI (e.g., ChatGPT) is banned Pausing the 1-rep voting experiment on Stack Overflow: reflecting on the..."':
+      "packages/images/math/theory/7_grade/algebra/1_topic/first.png",
+  'lorem ipsum New Focus Styles & Updkhvted Styling for Button Groups\nUpcoming initiatives on Stack Overflow and across the Stack Exchange network Staging Ground is coming back and moving out of beta Temporary policy: Generative AI (e.g., ChatGPT) is banned Pausing the 1-rep voting experiment on Stack Overflow: reflecting on the...':
+      "packages/images/math/theory/7_grade/algebra/1_topic/first.png",
+  'lorem ipsum New Focus Styles & Ubdated Styling for Button Groups\nUpcoming initiatives on Stack Overflow and across the Stack Exchange network Staging Ground is coming back and moving out of beta Temporary policy: Generative AI (e.g., ChatGPT) is banned Pausing the 1-rep voting experiment on Stack Overflow: reflecting on the...':
+      "no_image",
+  'lorem ipsum New Focus Styles & Ukhvdated Styling for Button Groups\nUpcoming initiatives on Stack Overflow and across the Stack Exchange network Staging Ground is coming back and moving out of beta Temporary policy: Generative AI (e.g., ChatGPT) is banned Pausing the 1-rep voting experiment on Stack Overflow: reflecting on the...':
+      "no_image",
+  'lorem ipsum New Focus Styles & Updmbvted Styling for Button Groups\nUpcoming initiatives on Stack Overflow and across the Stack Exchange network Staging Ground is coming back and moving out of beta Temporary policy: Generative AI (e.g., ChatGPT) is banned Pausing the 1-rep voting experiment on Stack Overflow: reflecting on the...':
+      "packages/images/math/theory/7_grade/algebra/1_topic/first.png",
+  'lorem ipsum New Focus Styles & Updated Styling for Button Groups\nUpcoming initiatives on Stack Overflow and across the Stack Exchange network Staging Ground is coming back and moving out of beta Temporary policy: Generative AI (e.g., ChatGPT) is banned Pausing the 1-rep voting experiment on Stack Overflow: reflecting on the...':
+      "no_image",
+  "lorem ipsum New Focus Styles & Updathvkhd Styling for Button Groups\nUpcoming initiatives on Stack Overflow and across the Stack Exchange network Staging Ground is coming back and moving out of beta Temporary policy: Generative AI (e.g., ChatGPT) is banned Pausing the 1-rep voting experiment on Stack Overflow: reflecting on the...":
+      "packages/images/math/theory/7_grade/algebra/1_topic/second.png"
 };
 
 var theories = [
@@ -33,6 +43,6 @@ var theories = [
       gradeId: '8grade',
       topicId: 'topic1',
       activityTypeId: 'theory',
-      title: "Числовые выражения практика",
+      title: "Числовые выражения теория",
       theoryData: [map]),
 ];

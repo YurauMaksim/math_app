@@ -16,26 +16,39 @@ class TheoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(theory.title),
       ),
-      body: Column(
-        children: [
-          Text(theory.title),
-          for (var block in theory.theoryData)
-            for (var text in block.entries)
-              Column(
-                children: [
-                  Text("${text.key}"),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  if (text.value != "No Image")
-                    Image.asset(text.value)
-                  else
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        child: Column(
+          children: [
+            Text(
+              theory.title,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            for (var block in theory.theoryData)
+              for (var text in block.entries)
+                Column(
+                  children: [
+                    Text(text.key),
                     SizedBox(
-                      height: 5,
+                      height: 16,
                     ),
-                ],
-              )
-        ],
+                    if (text.value != "no_image")
+                      Image.asset(
+                        alignment: Alignment.center,
+                        text.value,
+                        fit: BoxFit.contain,
+                      )
+                    else
+                      SizedBox(
+                        height: 5,
+                      ),
+                  ],
+                )
+          ],
+        ),
       ),
     );
   }

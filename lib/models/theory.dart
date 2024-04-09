@@ -8,7 +8,7 @@ class Theory {
   final String topicId;
   final String activityTypeId;
   final String title;
-  List<Map<String, dynamic>> theoryData;
+  List<Map<String, String>> theoryData;
 
   Theory({
     required this.id,
