@@ -1,9 +1,25 @@
-import 'package:math_app/models/topic.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Grade {
   final String id;
   final String title;
-  final List<Topic> topics;
 
-  const Grade({required this.id, required this.title, required this.topics});
+  Grade({
+    required this.id,
+    required this.title,
+  });
+
+  factory Grade.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data() as Map<String, dynamic>;
+    return Grade(
+      id: doc.id,
+      title: data['title'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      'title': title,
+    };
+  }
 }

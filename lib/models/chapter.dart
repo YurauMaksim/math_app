@@ -1,10 +1,25 @@
-import 'package:math_app/models/activity_type.dart';
-import 'package:math_app/models/grade.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Chapter {
   final String id;
   final String title;
-  final List<Grade> grades;
 
-  const Chapter({required this.id, required this.title, required this.grades});
+  Chapter({
+    required this.id,
+    required this.title,
+  });
+
+  factory Chapter.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data() as Map<String, dynamic>;
+    return Chapter(
+      id: doc.id,
+      title: data['title'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      'title': title,
+    };
+  }
 }
