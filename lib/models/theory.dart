@@ -3,25 +3,33 @@ import 'package:math_app/models/theory_content.dart';
 class Theory {
   final String id;
   final String title;
-  final List<TheoryContent> contents;
+  final List<TheoryContentBlock> contentBlocks;
+  final bool isLocal; // Indicates if the images are local
 
-  Theory({required this.id, required this.title, required this.contents});
+  Theory({
+    required this.id,
+    required this.title,
+    required this.contentBlocks,
+    required this.isLocal,
+  });
 
-  factory Theory.fromMap(Map<String, dynamic> data) {
+  factory Theory.fromFirestore(String id, Map<String, dynamic> data) {
     return Theory(
-      id: data['id'],
-      title: data['title'],
-      contents: (data['contents'] as List)
-          .map((contentData) => TheoryContent.fromMap(contentData))
+      id: id,
+      title: data['title'] ?? '',
+      contentBlocks: (data['contentBlocks'] as List)
+          .map((block) => TheoryContentBlock.fromFirestore(block))
           .toList(),
+      isLocal: data['isLocal'] ?? false,
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toFirestore() {
     return {
-      'id': id,
       'title': title,
-      'contents': contents.map((content) => content.toMap()).toList(),
+      'contentBlocks':
+          contentBlocks.map((block) => block.toFirestore()).toList(),
+      'isLocal': isLocal,
     };
   }
 }

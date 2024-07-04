@@ -1,40 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:math_app/models/theory.dart';
+import 'package:math_app/services/firestore_service.dart';
 
 class TheoryScreen extends StatelessWidget {
-  final Theory theory;
+  final String theoryId;
 
-  const TheoryScreen({super.key, required this.theory});
+  TheoryScreen({required this.theoryId});
 
   @override
   Widget build(BuildContext context) {
+    final FirestoreService _firestoreService = FirestoreService();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(theory.title),
+        title: Text('Теория'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: theory.contents.length,
-          itemBuilder: (context, index) {
-            final content = theory.contents[index];
-            if (content.type == 'text') {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(
-                  content.content,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              );
-            } else if (content.type == 'image') {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Image.network(content.content),
-              );
-            }
-            return const SizedBox.shrink();
-          },
-        ),
+      body: StreamBuilder<Theory>(
+        stream: _firestoreService.getTheory(theoryId),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final theory = snapshot.data!;
+            return ListView.builder(
+              itemCount: theory.contentBlocks.length,
+              itemBuilder: (context, index) {
+                final contentBlock = theory.contentBlocks[index];
+                if (contentBlock.type == 'text') {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(contentBlock.content),
+                  );
+                } else if (contentBlock.type == 'image') {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: theory.isLocal
+                        ? Image.asset(contentBlock.content) // Local image
+                        : Image.network(contentBlock.content), // Network image
+                  );
+                }
+                return SizedBox.shrink(); // In case of an unknown type
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }

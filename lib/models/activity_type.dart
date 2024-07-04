@@ -11,18 +11,17 @@ class ActivityType {
     required this.content,
   });
 
-  factory ActivityType.fromFirestore(Map<String, dynamic> data) {
+  factory ActivityType.fromFirestore(String id, Map<String, dynamic> data) {
     return ActivityType(
-      id: data['id'],
-      title: data['title'],
-      type: data['type'],
-      content: data['content'],
+      id: id,
+      title: data['title'] ?? '',
+      type: data['type'] ?? '',
+      content: data['content'] ?? '',
     );
   }
 
   Map<String, dynamic> toFirestore() {
     return {
-      'id': id,
       'title': title,
       'type': type,
       'content': content,

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:math_app/models/activity_type.dart';
 import 'package:math_app/models/chapter.dart';
+import 'package:math_app/models/equation.dart';
 import 'package:math_app/models/grade.dart';
+import 'package:math_app/models/practice.dart';
 import 'package:math_app/models/subject.dart';
+import 'package:math_app/models/test_question.dart';
+import 'package:math_app/models/theory.dart';
+import 'package:math_app/models/theory_content.dart';
 import 'package:math_app/models/topic.dart';
 import 'package:math_app/screens/subjects_screen.dart';
 import 'package:math_app/services/firestore_service.dart';
@@ -25,17 +30,16 @@ class SubjectChoosingScreen extends StatelessWidget {
     //TODO this is for test adding some topics or something
     final FirestoreService _firestoreService = FirestoreService();
 
-    Subject russian = Subject(id: 'rus', title: 'Русский язык');
-    Chapter writing = Chapter(id: 'writing', title: 'Чистописание');
-    Grade tenGrade = Grade(id: 'tenGrade', title: '10 класс');
-    Topic someTopic = Topic(id: 'some', topicName: 'Some topic very important');
-    ActivityType activityType = ActivityType(
-        id: 'practice',
-        title: 'Практика',
-        type: 'practice',
-        content: "some content");
-    ActivityType theory = ActivityType(
-        id: 'theory', title: 'Теория', type: 'theory', content: "some content");
+    // _firestoreService
+    //     .addPractice(Practice(id: "some", topicId: "Topic1", equations: [
+    //   Equation(id: "1", equation: "2 - 1", solution: "1")
+    // ], testQuestions: [
+    //   TestQuestion(
+    //       id: "1",
+    //       question: "Что такое уравнение",
+    //       options: ["Какой-то бред", "Какая-то хрень"],
+    //       correctAnswer: "Какая-то хрень")
+    // ]));
 
     return Scaffold(
       appBar: AppBar(

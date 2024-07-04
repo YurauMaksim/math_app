@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:math_app/models/activity_type.dart';
-import 'package:math_app/models/theory.dart';
 import 'package:math_app/models/topic.dart';
+import 'package:math_app/models/activity_type.dart';
+import 'package:math_app/screens/practice_screen.dart';
 import 'package:math_app/services/firestore_service.dart';
-import 'package:math_app/screens/theory_screen.dart';
+import 'package:math_app/screens/theory_screen.dart'; // Ensure you import the TheoryScreen
 
 class TopicScreen extends StatelessWidget {
   final String subjectId;
@@ -64,18 +64,23 @@ class TopicScreen extends StatelessWidget {
                 final activity = activities[index];
                 return ListTile(
                   title: Text(activity.title),
-                  onTap: () async {
+                  onTap: () {
                     if (activity.type == 'theory') {
-                      final theory =
-                          await _firestoreService.getTheory(activity.content);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => TheoryScreen(theory: theory),
+                          builder: (context) =>
+                              TheoryScreen(theoryId: activity.content),
                         ),
                       );
                     } else if (activity.type == 'practice') {
-                      // Navigate to practice screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PracticeScreen(topicId: activity.content),
+                        ),
+                      );
                     }
                   },
                 );

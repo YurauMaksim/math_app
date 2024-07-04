@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:math_app/models/chapter.dart';
 import 'package:math_app/models/grade.dart';
+import 'package:math_app/models/practice.dart';
 import 'package:math_app/models/subject.dart';
 import 'package:math_app/models/theory.dart';
 import 'package:math_app/models/topic.dart';
@@ -68,14 +69,21 @@ class FirestoreService {
         .doc(topicId)
         .collection('activityTypes')
         .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => ActivityType.fromFirestore(doc.data()))
-            .toList());
+        .map((snapshot) => snapshot.docs.map((doc) {
+              return ActivityType.fromFirestore(doc.id, doc.data());
+            }).toList());
   }
 
-  Future<Theory> getTheory(String theoryId) async {
-    final snapshot = await _db.collection('theories').doc(theoryId).get();
-    return Theory.fromMap(snapshot.data()!);
+  Stream<Theory> getTheory(String theoryId) {
+    return _db
+        .collection('theories')
+        .doc(theoryId)
+        .snapshots()
+        .map((doc) => Theory.fromFirestore(doc.id, doc.data()!));
+  }
+
+  Future<void> addTheory(Theory theory) {
+    return _db.collection('theories').doc(theory.id).set(theory.toFirestore());
   }
 
   void addSubject(Subject subject) {
@@ -112,5 +120,34 @@ class FirestoreService {
         .collection('topics')
         .doc();
     docRef.set(topic.toFirestore());
+  }
+
+  Stream<List<Practice>> getPractices(String topicId) {
+    return _db
+        .collection('practices')
+        .where('topicId', isEqualTo: topicId)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => Practice.fromFirestore(doc.data()))
+            .toList());
+  }
+
+  Future<void> addPractice(Practice practice) {
+    return _db.collection('practices').add(practice.toFirestore());
+  }
+
+  // Add this method to fetch correct answers for a topic
+  Future<Map<String, String>> getCorrectAnswers(String topicId) async {
+    final snapshot = await _db
+        .collection('topics')
+        .doc(topicId)
+        .collection('correct_answers')
+        .get();
+
+    final correctAnswers = <String, String>{};
+    for (var doc in snapshot.docs) {
+      correctAnswers[doc.id] = doc.data()['answer'];
+    }
+    return correctAnswers;
   }
 }

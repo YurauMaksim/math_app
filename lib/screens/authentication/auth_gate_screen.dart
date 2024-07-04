@@ -21,7 +21,7 @@ class AuthGate extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: Image.asset('flutterfire_300x.png'),
+                  child: Image.asset('packages/images/logo/logo.png'),
                 ),
               );
             },
@@ -37,7 +37,7 @@ class AuthGate extends StatelessWidget {
               return const Padding(
                 padding: EdgeInsets.only(top: 16),
                 child: Text(
-                  'By signing in, you agree to our terms and conditions.',
+                  'Залогинившись вы принимаете наши условия использования',
                   style: TextStyle(color: Colors.grey),
                 ),
               );
@@ -47,7 +47,7 @@ class AuthGate extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: Image.asset('flutterfire_300x.png'),
+                  child: Image.asset('packages/images/logo/logo.png'),
                 ),
               );
             },

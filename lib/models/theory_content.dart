@@ -1,17 +1,20 @@
-class TheoryContent {
+class TheoryContentBlock {
   final String type; // 'text' or 'image'
-  final String content; // The actual content, either text or image URL
+  final String content; // text content or image URL
 
-  TheoryContent({required this.type, required this.content});
+  TheoryContentBlock({
+    required this.type,
+    required this.content,
+  });
 
-  factory TheoryContent.fromMap(Map<String, dynamic> data) {
-    return TheoryContent(
+  factory TheoryContentBlock.fromFirestore(Map<String, dynamic> data) {
+    return TheoryContentBlock(
       type: data['type'],
       content: data['content'],
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toFirestore() {
     return {
       'type': type,
       'content': content,
