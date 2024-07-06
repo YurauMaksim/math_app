@@ -33,6 +33,9 @@ class _EquationWidgetState extends State<EquationWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (widget.equation.imageUrl != null &&
+                widget.equation.imageUrl!.isNotEmpty)
+              Image.network(widget.equation.imageUrl!),
             Text(widget.equation.equation, style: TextStyle(fontSize: 18)),
             TextField(
               controller: _controller,

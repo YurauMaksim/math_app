@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:math_app/main.dart';
 import 'package:math_app/models/chapter.dart';
-import 'package:math_app/models/subject.dart';
 import 'package:math_app/models/grade.dart';
 import 'package:math_app/screens/grade_widget_screen.dart';
 import 'package:math_app/services/firestore_service.dart';
+import 'package:math_app/constants/text_constants.dart' as constants;
 
 class ChapterScreen extends StatelessWidget {
   final String subjectId;
@@ -29,20 +30,20 @@ class ChapterScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('nothing is in here',
+                    Text(constants.PAGE_DOESNT_EXIST,
                         style: Theme.of(context)
                             .textTheme
                             .headlineLarge!
                             .copyWith(
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                             )),
                     const SizedBox(
                       height: 16,
                     ),
                     Text(
-                      "try to choose something new",
+                      constants.CHOOSE_ANOTHER_PAGE,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.onBackground,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                     )
                   ],
@@ -50,29 +51,47 @@ class ChapterScreen extends StatelessWidget {
               );
             }
 
+            grades.sort(
+                (a, b) => int.parse(a.title).compareTo(int.parse(b.title)));
+
             return ListView.builder(
               itemCount: grades.length,
               itemBuilder: (context, index) {
                 final grade = grades[index];
-                return ListTile(
-                  title: Text(grade.title),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => GradeScreen(
-                          subjectId: subjectId,
-                          chapterId: chapter.id,
-                          grade: grade,
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                  child: ListTile(
+                    trailing:
+                        Icon(Icons.arrow_forward), // Example trailing widget
+                    tileColor:
+                        theme.highlightColor, // Background color for the tile
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                    leading: Icon(Icons.book),
+
+                    title: Text("${grade.title} ${constants.CLASS}"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GradeScreen(
+                            subjectId: subjectId,
+                            chapterId: chapter.id,
+                            grade: grade,
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 );
               },
             );
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Center(child: Text('${constants.ERROR}: ${snapshot.error}'));
           } else {
             return const Center(child: CircularProgressIndicator());
           }

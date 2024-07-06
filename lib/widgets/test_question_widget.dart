@@ -35,6 +35,9 @@ class _TestQuestionWidgetState extends State<TestQuestionWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (widget.question.imageUrl != null &&
+                widget.question.imageUrl!.isNotEmpty)
+              Image.network(widget.question.imageUrl),
             Text(widget.question.question, style: TextStyle(fontSize: 18)),
             for (var option in widget.question.options)
               RadioListTile<String>(

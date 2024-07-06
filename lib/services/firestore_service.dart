@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:math_app/models/chapter.dart';
+import 'package:math_app/models/equation.dart';
 import 'package:math_app/models/grade.dart';
 import 'package:math_app/models/practice.dart';
 import 'package:math_app/models/subject.dart';
+import 'package:math_app/models/test_question.dart';
 import 'package:math_app/models/theory.dart';
 import 'package:math_app/models/topic.dart';
 import 'package:math_app/models/activity_type.dart';

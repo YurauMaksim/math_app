@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:math_app/models/equation.dart';
 import 'package:math_app/models/practice.dart';
@@ -7,6 +8,7 @@ import 'package:math_app/screens/result_screen.dart';
 import 'package:math_app/services/firestore_service.dart';
 import 'package:math_app/widgets/equation_widget.dart';
 import 'package:math_app/widgets/test_question_widget.dart';
+import 'package:math_app/constants/text_constants.dart' as constants;
 
 class PracticeScreen extends StatefulWidget {
   final String topicId;
@@ -49,7 +51,6 @@ class _PracticeScreenState extends State<PracticeScreen> {
     }
 
     if (missingAnswers.isEmpty) {
-      // Navigate to result screen
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -58,11 +59,10 @@ class _PracticeScreenState extends State<PracticeScreen> {
         ),
       );
     } else {
-      // Show dialog with missing answers
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text('Не все ответы заполнены'),
+          title: const Text(constants.NOT_ALL_ANSWERS_ARE_FILLED),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: missingAnswers.map((answer) => Text(answer)).toList(),
@@ -72,12 +72,26 @@ class _PracticeScreenState extends State<PracticeScreen> {
               onPressed: () {
                 Navigator.of(ctx).pop();
               },
-              child: Text('ОК'),
+              child: const Text(constants.OK),
             ),
           ],
         ),
       );
     }
+  }
+
+  List<T> _getRandomSubset<T>(List<T> list, int count) {
+    final random = Random();
+    final subset = <T>[];
+    final copy = List<T>.from(list);
+
+    for (var i = 0; i < count; i++) {
+      if (copy.isEmpty) break;
+      final index = random.nextInt(copy.length);
+      subset.add(copy.removeAt(index));
+    }
+
+    return subset;
   }
 
   @override
@@ -98,19 +112,22 @@ class _PracticeScreenState extends State<PracticeScreen> {
             }
             final practice = practices.first;
 
+            final equations = _getRandomSubset(practice.equations,
+                5); //5 means that 5 randomly equation will be choosing from the firebase
+            final testQuestions = _getRandomSubset(practice.testQuestions, 5);
+
             return ListView(
               children: [
-                ...practice.equations.map((e) => EquationWidget(
+                ...equations.map((e) => EquationWidget(
                       equation: e,
                       onSubmitAnswer: (answer) => _submitAnswer(e.id, answer),
                     )),
-                ...practice.testQuestions.map((q) => TestQuestionWidget(
+                ...testQuestions.map((q) => TestQuestionWidget(
                       question: q,
                       onSubmitAnswer: (answer) => _submitAnswer(q.id, answer),
                     )),
                 ElevatedButton(
-                  onPressed: () =>
-                      _checkAnswers(practice.equations, practice.testQuestions),
+                  onPressed: () => _checkAnswers(equations, testQuestions),
                   child: Text('Проверить ответы'),
                 ),
               ],

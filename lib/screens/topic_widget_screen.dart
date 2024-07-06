@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_app/main.dart';
 import 'package:math_app/models/topic.dart';
 import 'package:math_app/models/activity_type.dart';
 import 'package:math_app/screens/practice_screen.dart';
@@ -62,27 +63,41 @@ class TopicScreen extends StatelessWidget {
               itemCount: activities.length,
               itemBuilder: (context, index) {
                 final activity = activities[index];
-                return ListTile(
-                  title: Text(activity.title),
-                  onTap: () {
-                    if (activity.type == 'theory') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              TheoryScreen(theoryId: activity.content),
-                        ),
-                      );
-                    } else if (activity.type == 'practice') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              PracticeScreen(topicId: activity.content),
-                        ),
-                      );
-                    }
-                  },
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                  child: ListTile(
+                    trailing:
+                        Icon(Icons.arrow_forward), // Example trailing widget
+                    tileColor:
+                        theme.highlightColor, // Background color for the tile
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                    leading: Icon(Icons.book), // Example leading widget
+                    title: Text(activity.title),
+                    onTap: () {
+                      if (activity.type == 'theory') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                TheoryScreen(theoryId: activity.content),
+                          ),
+                        );
+                      } else if (activity.type == 'practice') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PracticeScreen(topicId: activity.content),
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 );
               },
             );
